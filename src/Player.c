@@ -21,6 +21,7 @@ struct Player *Player_create(char *name) {
 		player->name = name;
 	}
 	else {
+		player->name = malloc(12 * sizeof(char));
 		sprintf(player->name, "Player%d", amount_players+1);
 	}
 	player->points = 0;
@@ -38,4 +39,8 @@ int Player_take_card(struct Player *player, struct Card *card) {
 	List_add(player->cards, card);
 	Card_set_owner(card, player);
 	return 1;
+}
+
+char *Player_name(struct Player *player) {
+	return player->name;
 }

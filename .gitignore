@@ -1,14 +1,21 @@
 bin/
 obj/
 *.o
+crazyeights
+check_*
+!check_*.c
 
 # Autotools
 
 Makefile
+configure.scan
 .deps/
 .dirstamp
 *.log
 *.status
+build-aux/
+config.h
+config.h.in
 
 # http://www.gnu.org/software/automake
 

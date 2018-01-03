@@ -21,4 +21,9 @@ void Player_destroy(struct Player *player);
 */
 int Player_take_card(struct Player *player, struct Card *card);
 
+/**
+* Returns the player's name.
+*/
+char *Player_name(struct Player *player);
+
 #endif

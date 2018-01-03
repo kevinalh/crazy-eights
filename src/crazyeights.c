@@ -7,6 +7,7 @@
 #include <sys/types.h>
 #include <signal.h>
 #include <time.h>
+#include <pthread.h>
 
 #include "serverclient.h"
 #include "menuprinters.h"
