@@ -1,5 +1,6 @@
+# Old Makefile used before the Autotools nation striked
 CC = gcc
-CFLAGS = -g -Wall -Wextra -Wpedantic -Wshadow -Wcast-qual -Wstrict-prototypes -Wmissing-prototypes -Werror -DNDEBUG
+CFLAGS = -g -Wall -Wextra -Wpedantic -Wshadow -Wcast-qual -Wstrict-prototypes -Wmissing-prototypes -Werror
 SRC = src
 BIN = bin
 OBJ = obj

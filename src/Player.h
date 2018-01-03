@@ -2,6 +2,7 @@
 #define PLAYER_H_
 
 struct Player;
+struct Card;
 
 /**
 * Constructs a player. If the argument is NULL, uses a

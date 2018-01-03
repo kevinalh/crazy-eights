@@ -32,10 +32,12 @@ int main(void) {
 	srand(time(NULL));
 	struct Card **card_set = Card_create_set();
 	struct Stack *stack = Card_make_random_stack(card_set);
+	/*
 	struct Card *tmp_card;
 	while(Stack_top(stack) != NULL) {
 		tmp_card = (struct Card *)Stack_pop(stack);
 	}
+	*/
 	// Freeing memory
 	Stack_destroy(stack);
 	Card_destroy_set(card_set);

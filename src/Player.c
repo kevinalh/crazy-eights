@@ -1,3 +1,6 @@
+#include <stdlib.h>
+#include <stdio.h>
+
 #include "Player.h"
 #include "Card.h"
 #include "structures/simplelist.h"
@@ -11,7 +14,7 @@ struct Player {
 };
 
 struct Player *Player_create(char *name) {
-	struct Player *pĺayer = malloc(sizeof(struct Player));
+	struct Player *player = malloc(sizeof(struct Player));
 	if(!player) return NULL;
 	player->cards = List_create();
 	if(name != NULL) {

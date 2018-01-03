@@ -68,6 +68,7 @@ int List_delete(struct List *list, const void *const element) {
 		// It's the first element.
 		list->begin = node->next;
 		free(node);
+		if(list->begin == NULL) list->end = NULL;
 	}
 	else {
 		// Somewhere in the middle or the end.
@@ -161,6 +162,8 @@ void *List_pop(struct List *list) {
 		list->begin = list->begin->next;
 		free(tmp);
 		list->size--;
+		if(list->begin == NULL) list->end = NULL;
+		else if(list->begin->next == NULL) list->end = list->begin;
 	}
 	return element;
 }
