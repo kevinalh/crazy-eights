@@ -1,16 +1,27 @@
 CC = gcc
-CFLAGS = -Wall -g -Wextra -Wpedantic -Wshadow -Wcast-qual -Wstrict-prototypes -Wmissing-prototypes
+CFLAGS = -g -Wall -Wextra -Wpedantic -Wshadow -Wcast-qual -Wstrict-prototypes -Wmissing-prototypes -Werror -DNDEBUG
 SRC = src
 BIN = bin
 OBJ = obj
+PROGRAM = crazyeights
+FILES = $(PROGRAM) Card Player menuprinters serverclient structures/simplelist structures/stack
+SRC_FILES = $(addprefix $(SRC)/,$(addsuffix .c,$(FILES)))
+OBJ_FILES = $(addprefix $(OBJ)/,$(addsuffix .o,$(FILES)))
 
-default: crazyeights
+default: $(BIN)/$(PROGRAM)
 
-crazyeights: serverclient.o crazyeights.o menuprinters.o simplelist.o Card.o
-	$(CC) -g -o $(BIN)/crazyeights $(OBJ)/serverclient.o $(OBJ)/crazyeights.o $(OBJ)/menuprinters.o $(OBJ)/Card.o
+$(OBJ)/%.o: $(SRC)/%.c
+	mkdir -p $(OBJ)/structures
+	$(CC) $< $(CFLAGS) -c -o $@
 
-%.o: $(SRC)/%.c
-	$(CC) -g $< $(CFLAGS) -c -o $(OBJ)/$@
+$(BIN)/$(PROGRAM): $(OBJ_FILES)
+	$(CC) -o $(BIN)/$(PROGRAM) $(OBJ_FILES)
 
-run: crazyeights
-	$(BIN)/crazyeights
+run: default
+	$(BIN)/$(PROGRAM)
+
+clean:
+	$(RM) $(OBJ_FILES) $(BIN)/$(PROGRAM)
+	if [ -d "$(OBJ)/structures" ]; then rmdir $(OBJ)/structures; fi
+
+.PHONY: clean run
