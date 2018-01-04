@@ -2,35 +2,59 @@
 #define PLAYER_H_
 
 struct Card;
+
+/**
+ * Structure representing a player.
+ * 
+ * @struct Player
+ */
 struct Player;
 
 /**
- * Constructs a player. If the argument is NULL, uses a
- * default name.
+ * A list of players.
  * 
- * @memberof Player
+ * @extends List
+ * @struct PlayerList
+ */
+struct PlayerList;
+
+/**
+ * Constructs a Player.
+ * If the argument is NULL, uses a default name.
+ * 
+ * @param name
+ * Name of the player. Can be NULL for default.
+ * 
+ * @return     New Player object.
+ * 
+ * @memberof   Player
  */
 struct Player *Player_create(char *name);
 
 /**
  * Player destructor.
  * 
- * @memberof Player
+ * @memberof   Player
  */
 void Player_destroy(struct Player *player);
 
 /**
- * Lets the player take the card. Returns 1 on success.
+ * Lets the player take the card.
  * Will fail if the card already has an owner.
  * 
- * @memberof Player
+ * @retval     0 Success
+ * @retval     -1 Failure
+ * 
+ * @memberof   Player
  */
 int Player_take_card(struct Player *player, struct Card *card);
 
 /**
- * Returns the player's name.
+ * The player's name.
  * 
- * @memberof Player
+ * @return     The player's name.
+ * 
+ * @memberof   Player
  */
 char *Player_name(struct Player *player);
 

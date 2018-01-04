@@ -7,6 +7,8 @@
 #include <sys/types.h>
 #include <signal.h>
 #include <string.h>
+#include <sys/wait.h>
+#include <netinet/in.h>
 
 #include "serverclient.h"
 

@@ -14,7 +14,7 @@ START_TEST(test_Player_default_name)
 	struct Player *player3 = Player_create("Daniela");
 	ck_assert_str_eq(Player_name(player3), "Daniela");
 	struct Player *player4 = Player_create(NULL);
-	ck_assert_str_eq(Player_name(player4), "Player4");
+	ck_assert_str_eq(Player_name(player4), "Player2");
 	Player_destroy(player1);
 	Player_destroy(player2);
 	Player_destroy(player3);

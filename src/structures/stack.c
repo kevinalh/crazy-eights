@@ -4,6 +4,9 @@
 #include "simplelist.h"
 
 struct Stack {
+	/**
+	 * @private
+	 */
 	struct List *list;
 };
 

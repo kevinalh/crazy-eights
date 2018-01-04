@@ -13,9 +13,34 @@ static const char* suit_symbols[] = {
 };
 
 struct Card {
-	int value;
+	/**
+	 * Value of the card, from 1 to 13.
+	 */
+	unsigned int value;
+	/**
+	 * Suit for the card.
+	 */
 	enum suit suit;
+	/**
+	 * Player who owns the card.
+	 * 
+	 * Should be NULL if nobody owns it.
+	 * The player should have the card in its Player::cards list.
+	 */
 	struct Player *owner;	
+};
+
+struct CardList {
+	/**
+	 * @private
+	 */
+	struct List list;
+	/**
+	 * Weird idea to make the Doxygen graph more informative.
+	 * Ignore this field.
+	 * @protected
+	 */
+	struct Card *_;
 };
 
 int Card_value(struct Card *card) {
@@ -60,15 +85,15 @@ void Card_destroy_set(struct Card **card_set) {
 	free(card_set);
 }
 
-struct List *Card_create_list(struct Card **set) {
+struct CardList *Card_create_list(struct Card **set) {
 	// Notice this cast to void**:
 	// https://stackoverflow.com/questions/16160799/incompatible-pointer-type-in-c
-	return List_create_from((void **)set, 52);
+	return (struct CardList *) List_create_from((void **)set, 52);
 }
 
 struct Stack *Card_make_random_stack(struct Card **set) {
 	struct Stack *stack = Stack_create();
-	struct List *list = Card_create_list(set);
+	struct List *list = (struct List *) Card_create_list(set);
 	assert(list != NULL && stack != NULL);
 	struct Card *card;
 	while(List_size(list) > 0) {

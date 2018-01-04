@@ -3,17 +3,6 @@
 
 #include "simplelist.h"
 
-struct ListNode {
-	void *element;
-	struct ListNode *next;
-};
-
-struct List {
-	unsigned int size;
-	struct ListNode *begin;
-	struct ListNode *end;
-};
-
 struct ListNode *List_find_next(struct List *list, const void *const element);
 struct ListNode *List_find(struct List *list, const void *const element);
 unsigned int List_random_index(const struct List *const list);
@@ -25,6 +14,7 @@ struct List *List_create(void) {
 		list->begin = NULL;
 		list->end = NULL;
 		list->size = 0;
+		list->current = NULL;
 	}
 	return list;
 }
@@ -35,6 +25,7 @@ struct List *List_create_from(void **elements, unsigned int size) {
 	for(size_t i = 0; i < size; ++i) {
 		if(List_add(list, elements[i]) != 1) return NULL;
 	}
+	list->current = list->begin;
 	return list;
 }
 
@@ -170,4 +161,17 @@ void *List_pop(struct List *list) {
 
 unsigned int List_size(const struct List *const list) {
 	return list->size;
+}
+
+void *List_iterate(struct List *const list) {
+	struct ListNode *node = list->current;
+	if(node == NULL) {
+		node = list->begin;
+	}
+	list->current = node->next != NULL ? node->next : list->begin;
+	return node->element;
+}
+
+void List_reset_iterator(struct List *const list) {
+	list->current = list->begin;
 }

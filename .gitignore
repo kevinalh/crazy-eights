@@ -5,6 +5,8 @@ crazyeights
 check_*
 !check_*.c
 doc/
+.project
+.cproject
 
 # Autotools
 
