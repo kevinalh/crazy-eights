@@ -7,9 +7,25 @@
 
 static unsigned int amount_players = 0;
 
+/**
+ * Struct representing a player in the game.
+ */
 struct Player {
+	/**
+	 * Player's name.
+	 * For presentation purposes.
+	 */
 	char* name;
+	/**
+	 * Points acquired by the player so far.
+	 */
 	unsigned int points;
+	/**
+	 * List of cards owned.
+	 * 
+	 * It's required that the cards in this list have this
+	 * pointer as their Card::owner member.
+	 */
 	struct List *cards;
 };
 
@@ -35,7 +51,7 @@ void Player_destroy(struct Player *player) {
 }
 
 int Player_take_card(struct Player *player, struct Card *card) {
-	if(Card_owner(card) != NULL) return 0;
+	if(Card_owner(card) != NULL) return -1;
 	List_add(player->cards, card);
 	Card_set_owner(card, player);
 	return 1;

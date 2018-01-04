@@ -4,6 +4,7 @@ obj/
 crazyeights
 check_*
 !check_*.c
+doc/
 
 # Autotools
 
