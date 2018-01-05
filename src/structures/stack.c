@@ -26,7 +26,7 @@ int Stack_push(struct Stack *stack, void *const element) {
 	return List_add(stack->list, element);
 }
 
-void *Stack_pop(struct Stack *stack) {
+void *Stack_pop(struct Stack *const stack) {
 	return List_pop(stack->list);
 }
 

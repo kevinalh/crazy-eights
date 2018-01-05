@@ -25,14 +25,18 @@ struct GameState {
 	 * Stack of cards.
 	 */
 	struct Stack *stack;
-	/**
-	 * @protected
-	 *
-	 */
 };
 
 struct GameState *GameState_create() {
 	struct GameState *state = malloc(sizeof(struct GameState));
 	state->amount_players = 0;
 	return state;
+}
+
+struct Player *GameState_current_player(const struct GameState *const state) {
+	return List_current((struct List *)state->players);
+}
+
+void GameState_next_player(struct GameState *const state) {
+	List_iterate((struct List *)state->players);
 }

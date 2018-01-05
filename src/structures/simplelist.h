@@ -148,7 +148,7 @@ void *List_pop(struct List *list);
 unsigned int List_size(const struct List *const list);
 
 /**
- * Gets the current element of the list.
+ * Moves to the next element of the list.
  * The implementation includes a memory of where we are during each call
  * of this function, so that each call moves to the next element.
  * At the end, returns to the beginning, so that we can work on it as if it
@@ -158,6 +158,13 @@ unsigned int List_size(const struct List *const list);
  * @memberof	List
  */
 void *List_iterate(struct List *const list);
+
+/**
+ * Gets the current element of the list without advancing it.
+ *
+ * @memberof	List
+ */
+void *List_current(const struct List *const list);
 
 /**
  * Resets the iterator so that it points to the beginning.

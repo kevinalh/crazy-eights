@@ -163,6 +163,11 @@ unsigned int List_size(const struct List *const list) {
 	return list->size;
 }
 
+void *List_current(const struct List *const list) {
+	if(list->current == NULL) list->current = list->begin;
+	return list->current->element;
+}
+
 void *List_iterate(struct List *const list) {
 	struct ListNode *node = list->current;
 	if(node == NULL) {

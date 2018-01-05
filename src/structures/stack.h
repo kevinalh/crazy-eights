@@ -36,7 +36,7 @@ int Stack_push(struct Stack *stack, void *element);
  * @return     Element on top of the stack.
  * @memberof   Stack
  */
-void *Stack_pop(struct Stack *stack);
+void *Stack_pop(struct Stack *const stack);
 
 /**
  * Returns the element on top without deleting it.
